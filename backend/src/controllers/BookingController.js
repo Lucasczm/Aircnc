@@ -2,11 +2,11 @@ const Booking = require('../models/Booking');
 
 module.exports = {
   async store(req, res) {
-    const { userid } = req.headers;
+    const { userId } = req;
     const { spotid } = req.params;
     const { date } = req.body;
     const booking = await Booking.create({
-      user: userid,
+      user: userId,
       spot: spotid,
       date
     });

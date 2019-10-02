@@ -7,7 +7,7 @@ module.exports = {
     return res.send(spots);
   },
   async store(req, res) {
-    const { userid } = req.headers;
+    const { userId } = req;
     const { company, techs, price } = req.body;
 
     let url;
@@ -18,10 +18,10 @@ module.exports = {
         .status(400)
         .send({ error: 'Tamanho é muito grande. Maxímo 2MB' });
     }
-    if (!!req.file.transforms) {
+    if (req.file.transforms) {
       url = req.file.transforms[0].location;
     } else {
-      url = 'localURL-' + req.file.key;
+      url = `localURL-${req.file.key}`;
     }
     if (!url) {
       return res
@@ -30,7 +30,7 @@ module.exports = {
     }
 
     const spot = await Spot.create({
-      user: userid,
+      user: userId,
       thumbnail: url,
       company,
       techs: techs.split(',').map(tech => tech.trim()),
