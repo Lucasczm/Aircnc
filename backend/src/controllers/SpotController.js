@@ -10,9 +10,28 @@ module.exports = {
     const { userid } = req.headers;
     const { company, techs, price } = req.body;
 
+    let url;
+    if (!req.file)
+      return res.status(400).send({ error: 'Imagem não suportada' });
+    if (req.file.size > 2 * 1024 * 1024) {
+      return res
+        .status(400)
+        .send({ error: 'Tamanho é muito grande. Maxímo 2MB' });
+    }
+    if (!!req.file.transforms) {
+      url = req.file.transforms[0].location;
+    } else {
+      url = 'localURL-' + req.file.key;
+    }
+    if (!url) {
+      return res
+        .status(400)
+        .send({ error: 'Não foi possivel realizar o upload' });
+    }
+
     const spot = await Spot.create({
       user: userid,
-      thumbnail: req.file.filename,
+      thumbnail: url,
       company,
       techs: techs.split(',').map(tech => tech.trim()),
       price
