@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const multer = require('multer');
 const path = require('path');
 const crypto = require('crypto');
@@ -29,7 +30,7 @@ const storageTypes = {
     bucket: process.env.BUCKET_NAME,
     contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: 'public-read',
-    shouldTransform: function(req, file, cb) {
+    shouldTransform(req, file, cb) {
       cb(null, /^image/i.test(file.mimetype));
     },
     transforms: [
@@ -42,7 +43,7 @@ const storageTypes = {
             cb(null, fileName);
           });
         },
-        transform: function(req, file, cb) {
+        transform(req, file, cb) {
           cb(
             null,
             sharp()
@@ -65,7 +66,7 @@ module.exports = {
       'image/jpg',
       'image/jpeg',
       'image/webp'
-    ].find(formatoAceito => formatoAceito == file.mimetype);
+    ].find(formatoAceito => formatoAceito === file.mimetype);
     if (isAccepted) {
       return cb(null, true);
     }
