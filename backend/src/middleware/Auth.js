@@ -14,8 +14,8 @@ module.exports = async (req, res, next) => {
     throw new Error('Invalid Token');
   } catch (err) {
     if (err.name === 'TokenExpiredError')
-      return res.status(403).send({ error: 'JWT Expired' });
+      return res.status(401).send({ error: 'JWT Expired' });
 
-    return res.status(403).send({ error: 'Authentication required' });
+    return res.status(401).send({ error: 'Authentication required' });
   }
 };
