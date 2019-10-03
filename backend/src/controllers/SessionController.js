@@ -27,6 +27,6 @@ module.exports = {
 
       return res.send({ auth: true, type: 'Bearer', token });
     }
-    return res.send({ error: 'Invalid login' });
+    return res.status(401).send({ error: 'Invalid login' });
   }
 };

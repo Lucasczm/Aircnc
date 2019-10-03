@@ -9,7 +9,7 @@ module.exports = {
     const { email, password } = req.body;
     let user = await User.findOne({ email });
     if (user) {
-      return res.status(400).send({ error: 'Email already registered' });
+      return res.status(409).send({ error: 'Email already registered' });
     }
     user = await User.create({ email, password });
 
@@ -22,6 +22,6 @@ module.exports = {
       user
     });
 
-    return res.send({ auth: true, type: 'Bearer', token });
+    return res.status(201).send({ auth: true, type: 'Bearer', token });
   }
 };
