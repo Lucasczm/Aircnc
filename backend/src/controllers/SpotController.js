@@ -2,8 +2,8 @@ const Spot = require('../models/Spot');
 
 module.exports = {
   async index(req, res) {
-    const { tech } = req.query;
-    const spots = await Spot.find({ techs: tech });
+    //const { tech } = req.query;
+    const spots = await Spot.find();
     return res.send(spots);
   },
   async store(req, res) {
