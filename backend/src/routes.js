@@ -29,6 +29,9 @@ routes.get('/bookings', auth, BookingController.index);
 routes.post('/bookings/:bookingId/approvals', auth, ApprovalController.store);
 routes.post('/bookings/:bookingId/rejections', auth, RejectionController.store);
 
+routes.get('/bookings/approvals', auth, ApprovalController.index);
+routes.get('/mybookings', auth, ApprovalController.myBookings);
+
 routes.post('/recover', ResetPasswordController.store);
 routes.put('/recover', ResetPasswordController.changePassword);
 
