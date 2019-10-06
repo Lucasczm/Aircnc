@@ -7,6 +7,9 @@ const { APP_SECRET, TOKEN_EXPIRE } = process.env;
 module.exports = {
   async store(req, res) {
     const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).send();
+    }
     let user = await User.findOne({ email });
     if (user) {
       return res.status(409).send({ error: 'Email already registered' });

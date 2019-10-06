@@ -2,7 +2,6 @@ const Spot = require('../models/Spot');
 
 module.exports = {
   async index(req, res) {
-    //const { tech } = req.query;
     const spots = await Spot.find();
     return res.send(spots);
   },
@@ -13,11 +12,7 @@ module.exports = {
     let url;
     if (!req.file)
       return res.status(400).send({ error: 'Imagem não suportada' });
-    if (req.file.size > 2 * 1024 * 1024) {
-      return res
-        .status(400)
-        .send({ error: 'Tamanho é muito grande. Maxímo 2MB' });
-    }
+
     if (req.file.transforms) {
       url = req.file.transforms[0].location;
     } else {

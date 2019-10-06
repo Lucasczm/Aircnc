@@ -7,6 +7,9 @@ const { APP_SECRET, TOKEN_EXPIRE } = process.env;
 module.exports = {
   async store(req, res) {
     const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).send();
+    }
     const user = await User.findOne({ email }).select('+password');
     if (!user) return res.status(401).send({ error: 'Invalid login' });
     if (await user.comparePassword(password)) {

@@ -24,4 +24,5 @@ app.use(cors(corsConfig));
 app.use(express.json());
 app.use(routes);
 server.listen(process.env.PORT || 3333);
+// eslint-disable-next-line no-console
 console.log(`Running on port ${process.env.PORT || 3333}`);
