@@ -92,7 +92,7 @@ export default function Login({ navigation }) {
           onChangeText={setConfirmPassword}
         />
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText}>REGISTAR</Text>
+          <Text style={styles.buttonText}>CADASTRAR</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, styles.backButton]}
