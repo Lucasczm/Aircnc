@@ -4,6 +4,6 @@ applications:
     memory: 128M
     buildpack: sdk-for-nodejs
   - name: aircnc-frontend
-    path: ./frontend/build
+    path: ./frontend
     memory: 128M
     buildpack: sdk-for-nodejs
