@@ -92,7 +92,10 @@ export default function Dashboard({ history }) {
       </Modal>
       <Modal show={showBookingApproved}>
         {isLoadingApproved && <Spinner />}
-        {!isLoadingApproved && (
+        {!isLoadingApproved && bookingApproved.length <= 0 && (
+          <p>Nenhuma reserva agendada!</p>
+        )}
+        {!isLoadingApproved && bookingApproved.length > 0 && (
           <>
             <div class="scroll-y">
               <ul className="spot-list-vertical">
@@ -121,15 +124,15 @@ export default function Dashboard({ history }) {
                 ))}
               </ul>
             </div>
-            <button
-              className="btn"
-              onClick={hadleShowBookings}
-              style={{ marginTop: 10 }}
-            >
-              VOLTAR
-            </button>
           </>
         )}
+        <button
+          className="btn"
+          onClick={hadleShowBookings}
+          style={{ marginTop: 10 }}
+        >
+          VOLTAR
+        </button>
       </Modal>
       <ul className="notifications">
         {requests.map(request => (
@@ -168,6 +171,7 @@ export default function Dashboard({ history }) {
           <Spinner />
         </div>
       )}
+      {!isLoading && spots.length <= 0 && <p>Nenhum spot cadastrado!</p>}
       <ul className="spot-list">
         {spots.map(spot => (
           <li key={spot._id}>

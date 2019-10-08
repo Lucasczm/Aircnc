@@ -77,7 +77,7 @@ export default function Login({ history }) {
             <span>{loginError}</span>
           </div>
         )}
-        <button className="btn">REGISTAR</button>
+        <button className="btn">CADASTRAR</button>
       </form>
     </>
   );

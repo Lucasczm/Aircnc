@@ -1,18 +1,18 @@
-import React, { useState, useMemo } from "react";
-import api from "../../services/api";
+import React, { useState, useMemo } from 'react';
+import api from '../../services/api';
 
-import camera from "../../assets/camera.svg";
-import "./styles.css";
+import camera from '../../assets/camera.svg';
+import './styles.css';
 
-import Spinner from "../../components/Spinner";
-import Modal from "../../components/Modal";
+import Spinner from '../../components/Spinner';
+import Modal from '../../components/Modal';
 
 export default function New({ history }) {
   const [isLoading, setLoading] = useState(false);
   const [thumbnail, setThumbnail] = useState(null);
-  const [company, setCompany] = useState("");
-  const [techs, setTechs] = useState("");
-  const [price, setPrice] = useState("");
+  const [company, setCompany] = useState('');
+  const [techs, setTechs] = useState('');
+  const [price, setPrice] = useState('');
 
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
@@ -21,17 +21,17 @@ export default function New({ history }) {
   async function handleSubmit(event) {
     event.preventDefault();
     setLoading(true);
-    const token = localStorage.getItem("user");
+    const token = localStorage.getItem('user');
     const data = new FormData();
-    data.append("thumbnail", thumbnail);
-    data.append("company", company);
-    data.append("techs", techs);
-    data.append("price", price);
+    data.append('thumbnail', thumbnail);
+    data.append('company', company);
+    data.append('techs', techs);
+    data.append('price', price);
 
-    await api.post("/spots", data, {
+    await api.post('/spots', data, {
       headers: { Authorization: `Bearer ${token}` }
     });
-    history.push("/dashboard");
+    history.push('/dashboard');
   }
 
   return (
@@ -43,7 +43,7 @@ export default function New({ history }) {
         <label
           id="thumbnail"
           style={{ backgroundImage: `url(${preview})` }}
-          className={thumbnail ? "has-thumbnail" : ""}
+          className={thumbnail ? 'has-thumbnail' : ''}
         >
           <input type="file" onChange={e => setThumbnail(e.target.files[0])} />
           <img src={camera} alt="Select img" />
@@ -58,11 +58,11 @@ export default function New({ history }) {
         />
 
         <label htmlFor="techs">
-          Teclonoligas * <span>(separadas por vígula)</span>
+          Tecnologias * <span>(separadas por vígula)</span>
         </label>
         <input
           id="techs"
-          placeholder="Quais tecnologias usam?"
+          placeholder="Quais tecnologias utilizam?"
           value={techs}
           onChange={e => setTechs(e.target.value)}
         />
