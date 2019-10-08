@@ -10,7 +10,7 @@ Application created in rocketseat omnistack week with some more features.
 <p align="center">
   <a href="#about-this-project">About this project</a>&nbsp;&nbsp;&nbsp;&#149;&nbsp;&nbsp;&nbsp;
   <a href="#functionalities">Functionalities</a>&nbsp;&nbsp;&nbsp;&#149;&nbsp;&nbsp;&nbsp;
-  <a href="#-screenshots">Screenshots</a>&nbsp;&nbsp;&nbsp;&#149;&nbsp;&nbsp;&nbsp;
+  <a href="#screenshots">Screenshots</a>&nbsp;&nbsp;&nbsp;&#149;&nbsp;&nbsp;&nbsp;
   <a href="#getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;&#149;&nbsp;&nbsp;&nbsp;
   <a href="#technologies">Technologies</a>
 </p>
@@ -47,6 +47,9 @@ And download the production android app <a href="https://github.com/Lucasczm/Omn
 ### Backend
 
 You need a cluster in <a href="https://www.mongodb.com/cloud/atlas">MongoDB Atlas</a>, <a href="https://sendgrid.com/">Sendgrid</a> API key, for send recover password email, and an <a href="https://cloud.ibm.com">IBM Cloud account</a>, you can use Free Lite plan, for upload images to Cloud Storage.
+
+:exclamation: Your bucket IBM Cloud needs to be public!
+
 
 In the backend folder, rename `.env.sample` to `.env` and configure the variables with your mongoDB IBM and Sendgrid API Keys. The variable `CORS` needs the address of your frontend (It's an array). The variable `FRONTEND_RECOVERY_URL` it's a frontend address for backend send an email with a redirect link.
 
