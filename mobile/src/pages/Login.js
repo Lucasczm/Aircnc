@@ -30,7 +30,7 @@ export default function Login({ navigation }) {
     });
     AsyncStorage.getItem('userToken').then(user => {
       if (user) {
-        navigation.navigate('Bookings');
+        navigation.navigate('List');
       }
     });
   }, [navigation]);
